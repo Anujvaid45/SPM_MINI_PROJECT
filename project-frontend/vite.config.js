@@ -7,6 +7,10 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      
+    },
+    optimizeDeps: {
+      include: ['@stripe/react-stripe-js', '@stripe/stripe-js'],
     },
   },
 })

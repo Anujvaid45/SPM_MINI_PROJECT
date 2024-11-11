@@ -1,4 +1,3 @@
-// frontend/src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -14,7 +13,7 @@ const PrivateRoute = ({ children, requireAdmin = false }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Consider a spinner here for better UX
   }
 
   if (!user) {
@@ -26,6 +25,22 @@ const PrivateRoute = ({ children, requireAdmin = false }) => {
   }
 
   return children;
+};
+
+// New component to handle redirection based on user role
+const RedirectBasedOnRole = () => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div>Loading...</div>; // Consider a spinner here for better UX
+  }
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  // Redirect based on user role
+  return user.role === 'admin' ? <Navigate to="/admin" /> : <Navigate to="/dashboard" />;
 };
 
 const App = () => {
@@ -70,7 +85,7 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
-              <Route path="/" element={<Navigate to="/dashboard" />} />
+              <Route path="/" element={<RedirectBasedOnRole />} /> {/* Updated to use the new component */}
             </Routes>
           </main>
         </div>

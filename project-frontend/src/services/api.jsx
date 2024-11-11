@@ -21,6 +21,7 @@ export const authService = {
 
 export const planService = {
   getPlans: () => api.get('/plans'),
+  getAdminStats:()=>api.get('/plans/stats'),
   createPlan: (planData) => api.post('/plans', planData),
 };
 
