@@ -24,6 +24,9 @@ const transactionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  razorpayOrderId:{
+    type:String,
+  },
 }, {
   timestamps: true,
 });
