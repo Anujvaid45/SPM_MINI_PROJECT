@@ -38,7 +38,7 @@ const PaymentButton = ({ amount ,planId}) => {
           if (response?.razorpay_payment_id) {
             try {
               // If payment is successful, mark the transaction as 'completed'
-              const paymentResponse = await axios.post('http://localhost:5000/api/transactions/complete', {
+              const paymentResponse = await axios.post('https://spm-mini-project.onrender.com/api/transactions/complete', {
                 transactionId: razorpayOrder.id, // Use Razorpay order ID to find the transaction
                 paymentId: response.razorpay_payment_id, // Payment ID from Razorpay
               });
